@@ -1,13 +1,15 @@
 package kr.java.coffee.dto;
 
-public class Sale {
+import kr.java.swinglibrary.component.ToArray;
+
+public class Sale implements ToArray{
 	private int no;
-	private Product product;
-	private int saleCnt;
-	private int marginRate;
+	private Product product; // 제품
+	private int saleCnt; // 판매수량
+	private int marginRate; // 마진율
+	private SaleDetail saleDetail;
 	
 	public Sale() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Sale(int no) {
@@ -19,6 +21,14 @@ public class Sale {
 		this.product = product;
 		this.saleCnt = saleCnt;
 		this.marginRate = marginRate;
+	}
+
+	public Sale(int no, Product product, int saleCnt, int marginRate, SaleDetail saleDetail) {
+		this.no = no;
+		this.product = product;
+		this.saleCnt = saleCnt;
+		this.marginRate = marginRate;
+		this.saleDetail = saleDetail;
 	}
 
 	public int getNo() {
@@ -53,8 +63,32 @@ public class Sale {
 		this.marginRate = marginRate;
 	}
 
+	public SaleDetail getSaleDetail() {
+		return saleDetail;
+	}
+
+	public void setSaleDetail(SaleDetail saleDetail) {
+		this.saleDetail = saleDetail;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Sale [%s, %s, %s, %s]", no, product, saleCnt, marginRate);
+		return String.format("Sale [%s, %s, %s, %s, %s]", no, product, saleCnt, marginRate, saleDetail);
 	}
+
+	@Override
+	public Object[] toArray() {
+		if (saleDetail == null) {
+			return new Object[] { no, product.getCode(), saleCnt, marginRate+"%" };
+		}else {
+			return new Object[] { saleDetail.getRank(), product.getCode(), product.getName(), 
+					String.format("%,d", product.getPrice()), saleCnt, 
+					String.format("%,d", saleDetail.getSupplyPrice()), 
+					String.format("%,d", saleDetail.getAddTax()),
+					String.format("%,d", saleDetail.getSalePrice()), 
+					marginRate+"%", 
+					String.format("%,d", saleDetail.getMarginPrice()) };
+		}
+	}
+
 }

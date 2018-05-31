@@ -7,7 +7,9 @@
         <settings>      
                 <setting name="mapUnderscoreToCamelCase" value="true" />   
         </settings>
-        <typeAliases></typeAliases>
+        <typeAliases>
+        	<package name="kr.java.coffee.dto"/>
+        </typeAliases>
         <typeHandlers></typeHandlers>
         <environments default="development">
                 <environment id="development">
@@ -21,5 +23,8 @@
                 </environment>
         </environments>
 
-        <mappers></mappers>
+        <mappers>
+     		<mapper resource="kr/java/coffee/mappers/ProductMapper.xml"/>
+     		<mapper resource="kr/java/coffee/mappers/SaleMapper.xml"/>
+        </mappers>
 </configuration>

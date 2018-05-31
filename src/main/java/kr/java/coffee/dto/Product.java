@@ -14,6 +14,13 @@ public class Product {
 		this.code = code;
 	}
 
+	
+	public Product(String code, String name, int price) {
+		this.code = code;
+		this.name = name;
+		this.price = price;
+	}
+
 	/**
 	 * @return the code
 	 */
