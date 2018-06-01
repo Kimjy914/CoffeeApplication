@@ -1,76 +1,56 @@
 package kr.java.coffee.dto;
 
-public class Product {
+import kr.java.swinglibrary.component.ToArray;
+
+public class Product implements ToArray{
 	private String code;
 	private String name;
 	private int price;
 	
+	
 	public Product() {
 		// TODO Auto-generated constructor stub
-		
 	}
 
 	public Product(String code) {
 		this.code = code;
 	}
 
-	
 	public Product(String code, String name, int price) {
 		this.code = code;
 		this.name = name;
 		this.price = price;
 	}
 
-	/**
-	 * @return the code
-	 */
 	public String getCode() {
 		return code;
 	}
 
-	/**
-	 * @param code the code to set
-	 */
 	public void setCode(String code) {
 		this.code = code;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the price
-	 */
 	public int getPrice() {
 		return price;
 	}
 
-	/**
-	 * @param price the price to set
-	 */
 	public void setPrice(int price) {
 		this.price = price;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return String.format("Product [%s, %s, %s]", code, name, price);
+		return String.format("%s(%s - %s)", code, name, price);
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,8 +75,10 @@ public class Product {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public Object[] toArray() {
+		return new Object[] {code, name, String.format("%,d", price)};
+	}
 	
 }
-
-
